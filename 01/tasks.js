@@ -80,7 +80,6 @@ function fibonacciWithCache(x, fibonacci) {
 function printNumbers(max, cols) {
   var line = 0;
   var str = '';
-  
   if ((max + 1) % cols === 0) {
     line = (max + 1) / cols;
   } else {
@@ -120,18 +119,17 @@ function printNumbers(max, cols) {
 function rle(input) {
   var str = '';
   var crnt = 1;
-  
   for (var i = 1; input.length >= i; i++) {
     if (input[i] === input[i - 1]) {
       crnt += 1;
     } else if (crnt > 1) {
-        str += input[i - 1];
-        str += crnt;
-        crnt = 1;
-      } else {
-        str += input[i - 1];
-      }
+      str += input[i - 1];
+      str += crnt;
+      crnt = 1;
+    } else {
+      str += input[i - 1];
     }
+  }
   return str;
 }
 
