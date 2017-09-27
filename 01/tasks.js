@@ -99,10 +99,11 @@ function printNumbers(max, cols) {
           str += '\n';
         }
       } else {
-        return str;
+        break;
       }
     }
   }
+  return str;
 }
 
 /* ============================================= */
