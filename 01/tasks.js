@@ -79,21 +79,18 @@ function fibonacciWithCache(x, fibonacci) {
  */
 function printNumbers(max, cols) {
   var str = '';
+  var line = 0;
 
   if ((max + 1) % cols === 0) {
-    var line = (max + 1) / cols;
+    line = (max + 1) / cols;
   } else {
-    var line = 1 + Math.floor((max + 1) / cols);
+    line = 1 + Math.floor((max + 1) / cols);
   }
   for (var i = 0; i < line; i++) {
     for (var j = 0; j < cols; j++) {
       if (j * line + i < max + 1) {
-        if (j > 0) {
-          if (j * line + i >= 10) {
-            str += ' ';
-          } else {
-            str += '  ';
-          }
+        if (j > 0 && (j * line + i) < 10) {
+          str += '  ';    
         } else {
           str += ' ';
         }
