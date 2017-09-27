@@ -33,11 +33,11 @@ function getMinMax(string) {
  * @return {number} число под номером х
  */
 function fibonacciSimple(x) {
-  if ( x === 1 || x === 2) {
+  if (x === 1 || x === 2) {
     return 1;
-  } else {
-    return fibonacciSimple( x - 1 )+fibonacciSimple( x - 2 );
-  }
+  } 
+  return fibonacciSimple(x - 1)+fibonacciSimple(x - 2);
+  
 }
 
 /* ============================================= */
@@ -50,7 +50,7 @@ function fibonacciSimple(x) {
  */
 function fibonacciWithCache(x, fibonacci) {
   fibonacci = fibonacci || {};
-  if ( x === 1 || x === 2) {
+  if (x === 1 || x === 2) {
     fibonacci[x] = 1;
     return fibonacci[x];
   }
@@ -81,16 +81,16 @@ function fibonacciWithCache(x, fibonacci) {
 function printNumbers(max, cols) {
   var line = 0;
   var str = '';
-  if ((max+1) % cols == 0 ) {
-    line = (max+1) / cols;
+  if ((max + 1) % cols === 0) {
+    line = (max + 1) / cols;
   } else {
     line = 1 + Math.floor((max + 1) / cols);
   }
-  for (var i = 0; i < line; i++ ) {
+  for (var i = 0; i < line; i++) {
     for (var j = 0; j < cols; j++) {
-      if (j*line + i < max+1) {
-        if (j>0) {
-          if (j * line + i >= 10){
+      if (j * line + i < max + 1) {
+        if (j > 0) {
+          if (j * line + i >= 10) {
             str += ' ';
           } else {
             str += '  ';
@@ -98,9 +98,9 @@ function printNumbers(max, cols) {
         } else {
           str += ' ';
         }
-        str += j*line + i;
-        if (j == cols-1 && i!= line-1) {
-          str += "\n";
+        str += j * line + i;
+        if (j === cols - 1 && i != line-1) {
+          str += '\n';
         }
       } else {
         break;
@@ -120,11 +120,11 @@ function printNumbers(max, cols) {
 function rle(input) {
   var str = '';
   var crnt = 1;
-  for (var i = 1;input.length >= i ;i++ ) {
-    if (input[i] == input[i - 1]) {
+  
+  for (var i = 1; input.length >= i; i++) {
+    if (input[i] === input[i - 1]) {
       crnt += 1;
-    } else {
-      if (crnt > 1) {
+    } else if (crnt > 1) {
         str += input[i - 1];
         str += crnt;
         crnt = 1;
@@ -132,7 +132,6 @@ function rle(input) {
         str += input[i - 1];
       }
     }
-  }
   return str;
 }
 
