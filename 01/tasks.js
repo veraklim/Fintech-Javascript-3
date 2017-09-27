@@ -35,9 +35,8 @@ function getMinMax(string) {
 function fibonacciSimple(x) {
   if (x === 1 || x === 2) {
     return 1;
-  } 
-  return fibonacciSimple(x - 1)+fibonacciSimple(x - 2);
-  
+  }
+  return fibonacciSimple(x - 1) + fibonacciSimple(x - 2);
 }
 
 /* ============================================= */
@@ -81,6 +80,7 @@ function fibonacciWithCache(x, fibonacci) {
 function printNumbers(max, cols) {
   var line = 0;
   var str = '';
+  
   if ((max + 1) % cols === 0) {
     line = (max + 1) / cols;
   } else {
@@ -99,7 +99,7 @@ function printNumbers(max, cols) {
           str += ' ';
         }
         str += j * line + i;
-        if (j === cols - 1 && i != line-1) {
+        if (j === cols - 1 && i !== line - 1) {
           str += '\n';
         }
       } else {
