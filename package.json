@@ -4,7 +4,7 @@
   "description": "Homeworks for frontend part of tinkoff fintech 3 school",
   "main": "index.js",
   "scripts": {
-    "test": "npm run --silent unit-tests && npm run --silent lint",
+    "test": "npm run --silent unit-tests && npm run --silent lint --fix",
     "lint": "eslint ./01/tasks.js",
     "unit-tests": "mocha --reporter=spec ./01/test.js"
   },
