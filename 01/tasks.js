@@ -78,7 +78,7 @@ function fibonacciWithCache(x, fibonacci = {}) {
  */
 function printNumbers(max, cols) {
   var str = '';
-  var line  = Math.ceil((max + 1) / cols);
+  var line = Math.ceil((max + 1) / cols);
   
   for (var i = 0; i < line; i++) {
     for (var j = 0; j < cols; j++) {
