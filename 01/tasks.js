@@ -47,8 +47,7 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
-function fibonacciWithCache(x, fibonacci) {
-  fibonacci = fibonacci || {};
+function fibonacciWithCache(x, fibonacci = {}) {
   if (x === 1 || x === 2) {
     fibonacci[x] = 1;
     return fibonacci[x];
@@ -79,13 +78,8 @@ function fibonacciWithCache(x, fibonacci) {
  */
 function printNumbers(max, cols) {
   var str = '';
-  var line = 0;
-
-  if ((max + 1) % cols === 0) {
-    line = (max + 1) / cols;
-  } else {
-    line = 1 + Math.floor((max + 1) / cols);
-  }
+  var line  = Math.ceil((max + 1) / cols);
+  
   for (var i = 0; i < line; i++) {
     for (var j = 0; j < cols; j++) {
       if (j * line + i < max + 1) {
