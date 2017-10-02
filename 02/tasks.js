@@ -6,7 +6,7 @@ function timer(logger = console.log) {
   for (var i = 0; i < 10; i++) {
     setTimeout((i) => {
       logger(i);
-  }, 100*i, i);
+    }, 100 * i, i);
   }
 }
 
@@ -21,7 +21,7 @@ function timer(logger = console.log) {
  */
 function customBind(func, context, ...args) {
   return function(args_) {
-    args.push( args_);
+    args.push(args_);
     return func.apply(context, args);
   };
 }
@@ -39,12 +39,13 @@ function sum(x = 0) {
   if (x === 0) {
     return x;
   } else {
-    var cur_sum = x;
+    var cursum = x;
+
     function foo(y = 0) {
       if (y !== 0) {
-        cur_sum += y;
+        cursum += y;
       } else {
-        return cur_sum;
+        return cursum;
       }
       return foo;
     }
@@ -65,6 +66,7 @@ function anagram(first, second) {
     return false;
   } else {
     var flag = true;
+
     for (var i = 0; i < first.length; i++) {
       flag = (second.indexOf(first[i]) >= 0);
     }
@@ -81,13 +83,14 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  var new_ = []
+  var cur = []
+
   for (var a in arr) {
-    if (new_.indexOf(arr[a]) < 0) {
-      new_.push(arr[a]);
+    if (cur.indexOf(arr[a]) < 0) {
+      cur.push(arr[a]);
     }
   }
-  return new_.sort(function(a, b) {
+  return cur.sort(function(a, b) {
     if (a > b) {
       return 1;
     }
@@ -104,13 +107,14 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
-  var new_ = []
+  var cur = []
+
   for (var a in first) {
     if (second.indexOf(first[a]) >= 0) {
-      new_.push(first[a]);
+      cur.push(first[a]);
     }
   }
-  return new_.sort(function(a, b) {
+  return cur.sort(function(a, b) {
     if (a > b) {
       return 1;
     }
@@ -140,6 +144,7 @@ function isIsomorphic(left, right) {
     return false;
   } else {
     var cnt = 0;
+
     for (var a in left) {
       if (left[a] !== right[a]){
         ++cnt;
