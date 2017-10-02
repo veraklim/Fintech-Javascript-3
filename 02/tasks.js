@@ -4,9 +4,9 @@
  */
 function timer(logger = console.log) {
   for (var i = 0; i < 10; i++) {
-    setTimeout(() => {
+    setTimeout((i) => {
       logger(i);
-    }, 100);
+  }, 100*i, i);
   }
 }
 
@@ -20,7 +20,10 @@ function timer(logger = console.log) {
  * @return {Function} функция с нужным контекстом
  */
 function customBind(func, context, ...args) {
-
+  return function(args_) {
+    args.push( args_);
+    return func.apply(context, args);
+  };
 }
 
 /*= ============================================ */
@@ -32,8 +35,21 @@ function customBind(func, context, ...args) {
  * sum :: Number -> sum
  * sum :: void -> Number
  */
-function sum(x) {
-  return 0;
+function sum(x = 0) {
+  if (x === 0) {
+    return x;
+  } else {
+    var cur_sum = x;
+    function foo(y = 0) {
+      if (y !== 0) {
+        cur_sum += y;
+      } else {
+        return cur_sum;
+      }
+      return foo;
+    }
+    return foo;
+  }
 }
 
 /*= ============================================ */
@@ -45,7 +61,15 @@ function sum(x) {
  * @return {boolean}
  */
 function anagram(first, second) {
-  return false;
+  if (first.length !== second.length) {
+    return false;
+  } else {
+    var flag = true;
+    for (var i = 0; i < first.length; i++) {
+      flag = (second.indexOf(first[i]) >= 0);
+    }
+    return flag;
+  }
 }
 
 /*= ============================================ */
@@ -57,7 +81,20 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  return [];
+  var new_ = []
+  for (var a in arr) {
+    if (new_.indexOf(arr[a]) < 0) {
+      new_.push(arr[a]);
+    }
+  }
+  return new_.sort(function(a, b) {
+    if (a > b) {
+      return 1;
+    }
+    if (a < b) {
+      return -1;
+    }
+  });
 }
 
 /**
@@ -67,7 +104,20 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
-  return [];
+  var new_ = []
+  for (var a in first) {
+    if (second.indexOf(first[a]) >= 0) {
+      new_.push(first[a]);
+    }
+  }
+  return new_.sort(function(a, b) {
+    if (a > b) {
+      return 1;
+    }
+    if (a < b) {
+      return -1;
+    }
+  });
 }
 
 /* ============================================= */
@@ -86,7 +136,20 @@ function getIntersection(first, second) {
  * @return {boolean}
  */
 function isIsomorphic(left, right) {
-
+  if (left.length !== right.length) {
+    return false;
+  } else {
+    var cnt = 0;
+    for (var a in left) {
+      if (left[a] !== right[a]){
+        ++cnt;
+        if (cnt > 1) {
+          return false;
+        }
+      };
+    }
+    return true;
+  }
 }
 
 module.exports = {
