@@ -46,8 +46,9 @@ function sum(x = 0) {
   }
   if (x === 0) {
     return x;
-  } 
+  }
   var cursum = x;
+
   return foo;
 }
 
@@ -88,12 +89,12 @@ function getUnique(arr) {
     }
   }
   cur.sort(function(a, b) {
-    if (a > b) {
-      return 1;
-    }
+    var flag = 1;
+
     if (a < b) {
-      return -1;
+      flag = -1;
     }
+    return flag;
   });
   return cur;
 }
@@ -113,12 +114,12 @@ function getIntersection(first, second) {
     }
   }
   cur.sort(function(a, b) {
-    if (a > b) {
-      return 1;
-    }
+    var flag = 1;
+
     if (a < b) {
-      return -1;
+      flag = -1;
     }
+    return flag;
   });
   return cur;
 }
