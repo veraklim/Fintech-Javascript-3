@@ -4,7 +4,7 @@
  */
 function timer(logger = console.log) {
   for (var i = 0; i < 10; i++) {
-    setTimeout((i) => {
+    setTimeout(i => {
       logger(i);
     }, 100 * i, i);
   }
@@ -36,21 +36,19 @@ function customBind(func, context, ...args) {
  * sum :: void -> Number
  */
 function sum(x = 0) {
-  if (x === 0) {
-    return x;
-  } else {
-    var cursum = x;
-
-    function foo(y = 0) {
-      if (y !== 0) {
-        cursum += y;
-      } else {
-        return cursum;
-      }
-      return foo;
+  function foo(y = 0) {
+    if (y !== 0) {
+      cursum += y;
+    } else {
+      return cursum;
     }
     return foo;
   }
+  if (x === 0) {
+    return x;
+  } 
+  var cursum = x;
+  return foo;
 }
 
 /*= ============================================ */
@@ -64,14 +62,13 @@ function sum(x = 0) {
 function anagram(first, second) {
   if (first.length !== second.length) {
     return false;
-  } else {
-    var flag = true;
-
-    for (var i = 0; i < first.length; i++) {
-      flag = (second.indexOf(first[i]) >= 0);
-    }
-    return flag;
   }
+  var flag = true;
+
+  for (var i = 0; i < first.length; i++) {
+    flag = (second.indexOf(first[i]) >= 0);
+  }
+  return flag;
 }
 
 /*= ============================================ */
@@ -83,14 +80,14 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  var cur = []
+  var cur = [];
 
   for (var a in arr) {
     if (cur.indexOf(arr[a]) < 0) {
       cur.push(arr[a]);
     }
   }
-  return cur.sort(function(a, b) {
+  cur.sort(function(a, b) {
     if (a > b) {
       return 1;
     }
@@ -98,6 +95,7 @@ function getUnique(arr) {
       return -1;
     }
   });
+  return cur;
 }
 
 /**
@@ -107,14 +105,14 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
-  var cur = []
+  var cur = [];
 
   for (var a in first) {
     if (second.indexOf(first[a]) >= 0) {
       cur.push(first[a]);
     }
   }
-  return cur.sort(function(a, b) {
+  cur.sort(function(a, b) {
     if (a > b) {
       return 1;
     }
@@ -122,6 +120,7 @@ function getIntersection(first, second) {
       return -1;
     }
   });
+  return cur;
 }
 
 /* ============================================= */
@@ -142,19 +141,18 @@ function getIntersection(first, second) {
 function isIsomorphic(left, right) {
   if (left.length !== right.length) {
     return false;
-  } else {
-    var cnt = 0;
-
-    for (var a in left) {
-      if (left[a] !== right[a]){
-        ++cnt;
-        if (cnt > 1) {
-          return false;
-        }
-      };
-    }
-    return true;
   }
+  var cnt = 0;
+
+  for (var a in left) {
+    if (left[a] !== right[a]) {
+      ++cnt;
+      if (cnt > 1) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 module.exports = {
