@@ -60,12 +60,18 @@ function anagram(first, second) {
   if (first.length !== second.length) {
     return false;
   }
-  var flag = true;
+  var cash = {};
 
-  for (var i = 0; i < first.length; i++) {
-    flag = (second.indexOf(first[i]) >= 0);
+  for (var number in first) {
+    cash[number] += 1;
   }
-  return flag;
+  for (var number in  second) {
+    cash[number] -= 1;
+    if (cash[number] < 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /*= ============================================ */
