@@ -6,7 +6,7 @@ function timer(logger = console.log) {
   for (var i = 0; i < 10; i++) {
     setTimeout(i => {
       logger(i);
-    }, 100 * i, i);
+    }, 100, i);
   }
 }
 
@@ -36,6 +36,8 @@ function customBind(func, context, ...args) {
  * sum :: void -> Number
  */
 function sum(x = 0) {
+  var cursum = x;
+
   function foo(y = 0) {
     if (y !== 0) {
       cursum += y;
@@ -44,12 +46,11 @@ function sum(x = 0) {
     }
     return foo;
   }
-  if (x === 0) {
+  /*if (x === 0) {
     return x;
-  }
-  var cursum = x;
+  }*/
 
-  return foo;
+  return foo(x);
 }
 
 /*= ============================================ */
