@@ -61,18 +61,17 @@ function anagram(first, second) {
     return false;
   }
   var cash = {};
-  var number = 0;
 
-  for (number in first) {
-    if (first[number] in cash) {
-      cash[first[number]] += 1;
+  for (var a in first) {
+    if (first[a] in cash) {
+      cash[first[a]] += 1;
     } else {
-      cash[first[number]] = 1;
+      cash[first[a]] = 1;
     }
   }
-  for (var number in second) {
-    cash[second[number]] -= 1;
-    if (cash[second[number]] < 0) {
+  for (var b in second) {
+    cash[second[b]] -= 1;
+    if (cash[second[b]] < 0) {
       return false;
     }
   }
@@ -115,15 +114,15 @@ function getIntersection(first, second) {
   var cash1 = {};
   var cur = [];
 
-  for (var number in first) {
-    cash[first[number]] = 1;
+  for (var i in first) {
+    cash[first[i]] = 1;
   }
-  for (var number in second) {
-    cash1[second[number]] = 1;
+  for (var j in second) {
+    cash1[second[j]] = 1;
   }
-  for (var number in cash) {
-    if (cash[number] && cash1[number]) {
-      cur.push(number);
+  for (var k in cash) {
+    if (cash[k] && cash1[k]) {
+      cur.push(k);
     }
   }
   return cur;
