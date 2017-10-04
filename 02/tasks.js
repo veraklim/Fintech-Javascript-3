@@ -35,21 +35,16 @@ function customBind(func, context, ...args) {
  * sum :: Number -> sum
  * sum :: void -> Number
  */
-function sum(x = 0) {
-  var cursum = x;
+function sum(x) {
+  var cur_sum = 0;
 
-  function foo(y = 0) {
-    if (y !== 0) {
-      cursum += y;
-    } else {
-      return cursum;
+  function foo(y) {
+    if (y == null) {
+      return cur_sum;
     }
+    cur_sum += y;
     return foo;
   }
-  /*if (x === 0) {
-    return x;
-  }*/
-
   return foo(x);
 }
 
@@ -82,18 +77,24 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  var cur = [];
+  var cash = {}
 
-  for (var a in arr) {
-    if (cur.indexOf(arr[a]) < 0) {
-      cur.push(arr[a]);
+  var cur = arr.filter(function(number) {
+    if (number in cash) {
+      return false;
+    } else {
+      cash[number] = 1
+      return true;
     }
-  }
+  });
   cur.sort(function(a, b) {
     var flag = 1;
 
     if (a < b) {
       flag = -1;
+    }
+    if  (a === b) {
+      flag = 0;
     }
     return flag;
   });
@@ -119,6 +120,9 @@ function getIntersection(first, second) {
 
     if (a < b) {
       flag = -1;
+    }
+    if  (a === b) {
+      flag = 0;
     }
     return flag;
   });
