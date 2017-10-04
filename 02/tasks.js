@@ -36,13 +36,13 @@ function customBind(func, context, ...args) {
  * sum :: void -> Number
  */
 function sum(x) {
-  var cur_sum = 0;
+  var curSum = 0;
 
   function foo(y) {
     if (y == null) {
-      return cur_sum;
+      return curSum;
     }
-    cur_sum += y;
+    curSum += y;
     return foo;
   }
   return foo(x);
@@ -61,15 +61,16 @@ function anagram(first, second) {
     return false;
   }
   var cash = {};
+  var number = 0;
 
-  for (var number in first) {
+  for (number in first) {
     if (first[number] in cash) {
       cash[first[number]] += 1;
     } else {
       cash[first[number]] = 1;
     }
   }
-  for (var number in  second) {
+  for (var number in second) {
     cash[second[number]] -= 1;
     if (cash[second[number]] < 0) {
       return false;
@@ -92,13 +93,13 @@ function getUnique(arr) {
   var cur = arr.filter(function(number) {
     if (number in cash) {
       return false;
-    } else {
-      cash[number] = 1;
-      return true;
     }
+    cash[number] = 1;
+    return true;
   });
+
   cur.sort(function(a, b) {
-    return a-b;
+    return a - b;
   });
   return cur;
 }
