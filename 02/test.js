@@ -70,6 +70,11 @@ describe('Lesson 2', () => {
 
   describe('sum', () => {
     it('should compute sum', () => {
+      const addFive = sum(7);
+      const addEleven = sum(34);
+
+      expect(addFive(5)()).to.be(12);
+      expect(addEleven(11)()).to.be(45);
       expect(sum(1)(2)(4)(5)()).to.be(12);
       expect(sum(1)()).to.be(1);
       expect(sum()).to.be(0);
