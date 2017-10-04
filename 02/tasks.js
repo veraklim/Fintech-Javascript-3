@@ -63,11 +63,15 @@ function anagram(first, second) {
   var cash = {};
 
   for (var number in first) {
-    cash[number] += 1;
+    if (first[number] in cash) {
+      cash[first[number]] += 1;
+    } else {
+      cash[first[number]] = 1;
+    }
   }
   for (var number in  second) {
-    cash[number] -= 1;
-    if (cash[number] < 0) {
+    cash[second[number]] -= 1;
+    if (cash[second[number]] < 0) {
       return false;
     }
   }
@@ -83,26 +87,18 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  var cash = {}
+  var cash = {};
 
   var cur = arr.filter(function(number) {
     if (number in cash) {
       return false;
     } else {
-      cash[number] = 1
+      cash[number] = 1;
       return true;
     }
   });
   cur.sort(function(a, b) {
-    var flag = 1;
-
-    if (a < b) {
-      flag = -1;
-    }
-    if  (a === b) {
-      flag = 0;
-    }
-    return flag;
+    return a-b;
   });
   return cur;
 }
@@ -114,27 +110,23 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
+  var cash = {};
+  var cash1 = {};
   var cur = [];
 
-  for (var a in first) {
-    if (second.indexOf(first[a]) >= 0) {
-      cur.push(first[a]);
+  for (var number in first) {
+    cash[first[number]] = 1;
+  }
+  for (var number in second) {
+    cash1[second[number]] = 1;
+  }
+  for (var number in cash) {
+    if (cash[number] && cash1[number]) {
+      cur.push(number);
     }
   }
-  cur.sort(function(a, b) {
-    var flag = 1;
-
-    if (a < b) {
-      flag = -1;
-    }
-    if  (a === b) {
-      flag = 0;
-    }
-    return flag;
-  });
   return cur;
 }
-
 /* ============================================= */
 
 /**
