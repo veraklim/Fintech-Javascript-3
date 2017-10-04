@@ -49,6 +49,23 @@ describe('Lesson 2', () => {
       expect(lastContext).to.be(context);
       expect(lastParams).to.eql(['hello', 'work', 777]);
     });
+
+     it('should bind arguments and context - 3', () => {
+      let lastContext = null;
+      let lastParams = null;
+      const context = {};
+
+      function call(...params) {
+        lastContext = this;
+        lastParams = params;
+      }
+
+      let bindedFunc = customBind(call, context, 5, 'breaking');
+
+      bindedFunc('bad', 2);
+      expect(lastContext).to.be(context);
+      expect(lastParams).to.eql([5, 'breaking', 'bad', 2]);
+    });
   });
 
   describe('sum', () => {
@@ -63,6 +80,7 @@ describe('Lesson 2', () => {
     it('should check are words anagrams of each other', () => {
       expect(anagram('просветитель', 'терпеливость')).to.be.ok();
       expect(anagram('первый', 'терпеливость')).not.to.be.ok();
+      expect(anagram('лукккк', 'луклук')).not.to.be.ok();
     });
   });
 
@@ -77,6 +95,7 @@ describe('Lesson 2', () => {
     it('should return sorted intersection of arrays', () => {
       expect(getIntersection([1, 5, 7, 9, 3,], [1, 2, 3, 4])).to.eql([1, 3]);
       expect(getIntersection([1, 9, 10, 3, 5, 7], [10, 3, 4])).to.eql([3, 10]);
+      expect(getIntersection([1, 1, 4, 3, 5, 5], [1, 1, 3, 4])).to.eql([1, 3, 4]);
     });
   });
 
