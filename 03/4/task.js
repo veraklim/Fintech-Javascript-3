@@ -6,9 +6,10 @@
  */
 
 function promiseRace(promises) {
-  var newPromise = new Promise(function (resolve, reject) {
+  const newPromise = new Promise(function(resolve, reject) {
     promises.forEach(promise => promise.then(resolve, reject));
   });
+
   return newPromise;
 }
 
