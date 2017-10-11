@@ -6,15 +6,15 @@
  * @return {Promise}
  */
 function promiseAll(promises) {
-  var newPromise = new Promise(function(resolve, reject) {
-    var resolveValues = [];
-    var num = 0;
+  const newPromise = new Promise(function(resolve, reject) {
+    let resolveValues = [];
+    let num = 0;
 
     promises.forEach((promise, i) => {
       promise.then(res => {
-      resolveValues[i] = res;
-      num += 1;
-      }, reject).then(function () {
+        resolveValues[i] = res;
+        num += 1;
+      }, reject).then(function() {
         if (num === promises.length) {
           resolve(resolveValues);
         }
