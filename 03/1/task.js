@@ -14,13 +14,13 @@ class NumberAndString {
     this.len = str.length;
   }
   toString() {
-    const newStr =  this.str;
+    const newStr = this.str;
 
     return newStr.toString();
   }
   valueOf() {
     const num = this.len;
- 
+
     return num.valueOf();
   }
 }
