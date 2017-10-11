@@ -10,7 +10,16 @@
  */
 class NumberAndString {
   constructor(str) {
-
+    this.str = str;
+    this.len = str.length;
+  }
+  toString() {
+    var newStr =  new String(this.str);
+    return newStr.toString();
+  }
+  valueOf() {
+    var num = new Number(this.len);
+    return num.valueOf();
   }
 }
 
