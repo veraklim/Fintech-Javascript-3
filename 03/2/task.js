@@ -8,10 +8,10 @@
 * @return {Promise} промис с нужным поведением
 */
 function rejectOnTimeout(promise, timeoutInMilliseconds) {
-  var newPromise = new Promise(function(resolve, reject) {
+  const newPromise = new Promise(function(resolve, reject) {
     setTimeout(function() {
       reject('timeout_error');
-      }, timeoutInMilliseconds);
+    }, timeoutInMilliseconds);
     promise.then(resolve, reject);
   });
 
