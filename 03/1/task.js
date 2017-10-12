@@ -16,7 +16,7 @@ class NumberAndString {
   toString() {
     const newStr = this.str;
 
-    return newStr.toString();
+    return newStr;
   }
   valueOf() {
     const num = this.len;
