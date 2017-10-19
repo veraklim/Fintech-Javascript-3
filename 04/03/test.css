@@ -1,0 +1,35 @@
+body {
+    margin: 0 auto;
+    max-width: 400px;
+}
+html { font-size: 20px; }
+
+ul{
+    list-style-type: none;
+    font-size: 24px;
+}
+
+ul li:before{
+    font-weight: 400;
+    color: yellow;
+    content: "•";
+    padding-right: 7px;
+}
+
+ol {
+    list-style: none;
+    counter-reset: li;
+}
+
+ol li{
+    counter-increment: li;
+    font-size: 20px;
+}
+
+ol li::before{
+    display: inline-block;
+    content:counter(li);
+    font-weight: 400;
+    color: blue;
+    padding-right: 7px;
+}
